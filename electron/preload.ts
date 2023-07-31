@@ -37,8 +37,8 @@ const api = {
     ipcRenderer.on(channel, (_, data) => callback(data));
   },
 
-  Clipboard: () => {
-    return ipcRenderer.send('clipboard');
+  clipboard: () => {
+    return ipcRenderer.invoke('readClipboard');
   }
 };
 contextBridge.exposeInMainWorld('Main', api);

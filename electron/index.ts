@@ -49,6 +49,11 @@ function createWindow() {
   ipcMain.on('close', () => {
     window.close();
   });
+
+  ipcMain.handle('readClipboard', (_, _) => {
+    // console.log(clipboard.readText('clipboard'));
+    return clipboard.readText('clipboard');
+  });
 }
 
 // This method will be called when Electron has finished
@@ -78,8 +83,4 @@ app.on('window-all-closed', () => {
 ipcMain.on('message', (event: IpcMainEvent, message: any) => {
   console.log(message);
   setTimeout(() => event.sender.send('message', 'hi from electron'), 500);
-});
-
-ipcMain.on('clipboard', () => {
-  return clipboard.readText();
 });
