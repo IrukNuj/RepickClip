@@ -35,6 +35,10 @@ const api = {
    */
   on: (channel: string, callback: (data: any) => void) => {
     ipcRenderer.on(channel, (_, data) => callback(data));
+  },
+
+  Clipboard: () => {
+    return ipcRenderer.send('clipboard');
   }
 };
 contextBridge.exposeInMainWorld('Main', api);

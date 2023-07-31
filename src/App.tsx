@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { clipboard } from 'electron';
 import AppBar from './AppBar';
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
   const [isOpen, setOpen] = useState(false);
   const [isSent, setSent] = useState(false);
   const [fromMain, setFromMain] = useState<string | null>(null);
+  const [clipboard, setClipboard] = useState('');
 
   const handleToggle = () => {
     if (isOpen) {
@@ -27,10 +29,11 @@ function App() {
   };
 
   useEffect(() => {
-    if (isSent && window.Main)
+    if (isSent && window.Main) {
       window.Main.on('message', (message: string) => {
         setFromMain(message);
       });
+    }
   }, [fromMain, isSent]);
 
   return (
@@ -42,7 +45,11 @@ function App() {
       )}
       <div className="flex-auto">
         <div className=" flex flex-col justify-center items-center h-full bg-gray-800 space-y-4">
-          <h1 className="text-2xl text-gray-200">Vite + React + Typescript + Electron + Tailwind</h1>
+          <h1 className="text-2xl text-gray-200">
+            Vite + React + Typescript + Electron + Tailwind
+            {window.Main.Clipboard()}
+          </h1>
+          {/* <p>{clipboard.readText()}</p> */}
           <button
             className="bg-yellow-400 py-2 px-4 rounded focus:outline-none shadow hover:bg-yellow-200"
             onClick={handleToggle}

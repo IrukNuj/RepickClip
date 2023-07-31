@@ -2,7 +2,7 @@
 import { join } from 'path';
 
 // Packages
-import { BrowserWindow, app, ipcMain, IpcMainEvent } from 'electron';
+import { BrowserWindow, app, ipcMain, IpcMainEvent, clipboard } from 'electron';
 import isDev from 'electron-is-dev';
 
 const height = 600;
@@ -78,4 +78,8 @@ app.on('window-all-closed', () => {
 ipcMain.on('message', (event: IpcMainEvent, message: any) => {
   console.log(message);
   setTimeout(() => event.sender.send('message', 'hi from electron'), 500);
+});
+
+ipcMain.on('clipboard', () => {
+  return clipboard.readText();
 });
