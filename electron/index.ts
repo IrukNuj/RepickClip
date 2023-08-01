@@ -2,7 +2,7 @@
 import { join } from 'path';
 
 // Packages
-import { BrowserWindow, app, ipcMain, IpcMainEvent, clipboard, nativeTheme } from 'electron';
+import { BrowserWindow, app, ipcMain, clipboard, nativeTheme } from 'electron';
 import isDev from 'electron-is-dev';
 import { PrismaClient } from '@prisma/client';
 
@@ -93,7 +93,6 @@ app.on('ready', () => {
   setInterval(() => {
     clipboardData.current = clipboard.readText();
     if (clipboardData.current !== clipboardData.before) {
-      console.log('saved!');
       saveClipboardData(clipboardData.current);
     }
     clipboardData.before = clipboardData.current;
@@ -103,11 +102,6 @@ app.on('ready', () => {
 app.on('window-all-closed', () => {
   // windowを閉じてもクリップボードのデータ収集は行ってほしいので
   // if (process.platform !== 'darwin') app.quit();
-});
-
-ipcMain.on('message', (event: IpcMainEvent, message: any) => {
-  console.log(message);
-  setTimeout(() => event.sender.send('message', 'hi from electron'), 500);
 });
 
 ipcMain.handle('get-clipboard-data', async () => {
