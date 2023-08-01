@@ -2,19 +2,21 @@
 import { join } from 'path';
 
 // Packages
-import { BrowserWindow, app, ipcMain, IpcMainEvent, clipboard } from 'electron';
+import { BrowserWindow, app, ipcMain, IpcMainEvent, clipboard, nativeTheme } from 'electron';
 import isDev from 'electron-is-dev';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-const height = 600;
-const width = 800;
+const height = 1800;
+const width = 2400;
 
 const initialClipboardData = {
   before: '',
   current: ''
 };
+
+nativeTheme.themeSource = 'dark';
 
 function createWindow() {
   const window = new BrowserWindow({
@@ -25,6 +27,7 @@ function createWindow() {
     resizable: true,
     fullscreenable: true,
     webPreferences: {
+      // nodeIntegration: true,
       preload: join(__dirname, 'preload.js')
     }
   });
@@ -39,7 +42,7 @@ function createWindow() {
     window?.loadFile(url);
   }
   // Open the DevTools.
-  // window.webContents.openDevTools();
+  window.webContents.openDevTools();
 
   // For AppBar
   ipcMain.on('minimize', () => {
@@ -74,6 +77,8 @@ function saveClipboardData(clipboardData: string) {
     .create({
       data: {
         content: clipboardData,
+        favorite: false,
+        count: 0,
         timestamp: new Date()
       }
     })
@@ -103,4 +108,18 @@ app.on('window-all-closed', () => {
 ipcMain.on('message', (event: IpcMainEvent, message: any) => {
   console.log(message);
   setTimeout(() => event.sender.send('message', 'hi from electron'), 500);
+});
+
+ipcMain.handle('get-clipboard-data', async () => {
+  try {
+    const clipboardDataList = await prisma.clipboardData.findMany({
+      orderBy: {
+        timestamp: 'desc'
+      }
+    });
+    return clipboardDataList;
+  } catch (error) {
+    console.error('Error retrieving data from database:', error);
+    return [];
+  }
 });

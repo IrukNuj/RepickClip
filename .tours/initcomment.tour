@@ -24,13 +24,13 @@
     },
     {
       "file": "electron/index.ts",
-      "description": "// Quit when all windows are closed, except on macOS. There, it's common\n// for applications and their menu bar to stay active until the user quits\n// explicitly with Cmd + Q.",
-      "line": 98
+      "description": "// In this file you can include the rest of your app's specific main process\n// code. You can also put them in separate files and require them here.\n\n// listen the channel `message` and resend the received message to the renderer process",
+      "line": 104
     },
     {
       "file": "electron/index.ts",
-      "description": "// In this file you can include the rest of your app's specific main process\n// code. You can also put them in separate files and require them here.\n\n// listen the channel `message` and resend the received message to the renderer process",
-      "line": 104
+      "description": "// Quit when all windows are closed, except on macOS. There, it's common\n// for applications and their menu bar to stay active until the user quits\n// explicitly with Cmd + Q.",
+      "line": 98
     }
   ],
   "ref": "master"

@@ -33,7 +33,7 @@ function AppBar() {
           </button>
         </div>
       </div>
-      <div className="bg-gray-900 text-white undraggable">
+      {/* <div className="bg-gray-900 text-white undraggable">
         <div className="flex text-center">
           <div className="text-sm w-8  hover:bg-gray-700">File</div>
           <div className="text-sm w-8   hover:bg-gray-700">Edit</div>
@@ -41,7 +41,7 @@ function AppBar() {
           <div className="text-sm w-14  hover:bg-gray-700 ">Window</div>
           <div className="text-sm w-9  hover:bg-gray-700 ">Help</div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

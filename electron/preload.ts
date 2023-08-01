@@ -7,7 +7,17 @@ declare global {
   }
 }
 
-const api = {
+type rendererAPI = {
+  sendMessage: (message: string) => void;
+  Minimize: () => void;
+  Maximize: () => void;
+  Close: () => void;
+  on: (channel: string, callback: (data: any) => void) => void;
+  clipboard: () => Promise<any>;
+  getClipboardData: () => Promise<any>;
+};
+
+const api: rendererAPI = {
   /**
    * Here you can expose functions to the renderer process
    * so they can interact with the main (electron) side
@@ -36,9 +46,11 @@ const api = {
   on: (channel: string, callback: (data: any) => void) => {
     ipcRenderer.on(channel, (_, data) => callback(data));
   },
-
   clipboard: () => {
     return ipcRenderer.invoke('readClipboard');
+  },
+  getClipboardData: () => {
+    return ipcRenderer.invoke('get-clipboard-data');
   }
 };
 contextBridge.exposeInMainWorld('Main', api);
