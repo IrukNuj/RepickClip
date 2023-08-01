@@ -2,6 +2,29 @@
 
 - https://zenn.dev/todesking/articles/90d05f92d49461
 - https://zenn.dev/thirosue/books/49a4ee418743ed/viewer/57d161
+- https://www.electron-trpc.dev/
+- https://flowbite.com/
+
+## 欲しい機能
+
+- clipboardの内容を永続的に保存する
+- 保存したclipboardの内容を文字列で検索する
+- 保存したclipboardの内容を日付で検索する
+- 簡単に一覧からclipboardにコピーできる
+  - Repick回数を記憶、Sort出来るようにする
+- clipboardをブックマーク出来る
+- 一定期間経過したclipboardのデータを削除できる
+- [row] ダークモードライトモードの切り替え
+- tag機能とか？
+
+
+
+
+
+
+
+
+
 
 <!-- # Vite + React + Typescript + Electron - Starter
 

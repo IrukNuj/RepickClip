@@ -22,6 +22,7 @@ function createWindow() {
   const window = new BrowserWindow({
     width,
     height,
+    roundedCorners: true,
     frame: false,
     show: true,
     resizable: true,
