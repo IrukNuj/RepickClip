@@ -1,0 +1,25 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - main  # メインブランチの名前が異なる場合は、ここを適切な名前に変更してください。
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: チェックアウト
+        uses: actions/checkout@v2
+
+      - name: Node.jsのセットアップ
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14  # 必要に応じてNode.jsのバージョンを調整してください。
+
+      - name: 依存関係のインストール
+        run: yarn install --frozen-lockfile
+
+      - name: Yarn Lintの実行
+        run: yarn lint
