@@ -29,7 +29,7 @@ function App() {
         <div className="flex-auto w-5/6">
           <h1 className="text-2xl font-bold mb-4 text-gray-200">Clipboard Data:(このへんにSearch Form)</h1>
           <input
-            className="appearance-none block w-full bg-gray-300 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            className="appearance-none block w-full border bg-gray-300 bg-transparent  text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             type="text"
             placeholder="けんさくまど"
             value={filter}
@@ -37,7 +37,7 @@ function App() {
               setFilter(e.target.value);
             }}
           />
-          <div className="py-4  overflow-y-auto max-h-[85vh]">
+          <div className="py-4  overflow-y-auto max-h-[85vh] max-x-[90vw]">
             <table className="w-full text-left text-gray-500 dark:text-gray-400 rounded">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -69,7 +69,7 @@ function App() {
                     }}
                   >
                     <td className="px-6 py-1">{data.id}</td>
-                    <td className="px-6 w-5/6 py-2 text-white">{data.content}</td>
+                    <td className="px-6 py-2 text-white overflow-hidden">{data.content}</td>
                     <td className="px-6 py-2">
                       <button
                         onClick={() => {
