@@ -1,0 +1,37 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "initCOmment",
+  "steps": [
+    {
+      "file": "electron/index.ts",
+      "description": "// This method will be called when Electron has finished\n// initialization and is ready to create browser windows.\n// Some APIs can only be used after this event occurs.",
+      "line": 66
+    },
+    {
+      "file": "electron/index.ts",
+      "description": "  // Create the browser window.\n",
+      "line": 20
+    },
+    {
+      "file": "electron/index.ts",
+      "description": "    //  change to false to use AppBar\n",
+      "line": 23
+    },
+    {
+      "file": "electron/index.ts",
+      "description": "    // On macOS it's common to re-create a window in the app when the\n    // dock icon is clicked and there are no other windows open.",
+      "line": 68
+    },
+    {
+      "file": "electron/index.ts",
+      "description": "// Quit when all windows are closed, except on macOS. There, it's common\n// for applications and their menu bar to stay active until the user quits\n// explicitly with Cmd + Q.",
+      "line": 98
+    },
+    {
+      "file": "electron/index.ts",
+      "description": "// In this file you can include the rest of your app's specific main process\n// code. You can also put them in separate files and require them here.\n\n// listen the channel `message` and resend the received message to the renderer process",
+      "line": 104
+    }
+  ],
+  "ref": "master"
+}

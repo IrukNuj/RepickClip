@@ -45,10 +45,7 @@ function App() {
       )}
       <div className="flex-auto">
         <div className=" flex flex-col justify-center items-center h-full bg-gray-800 space-y-4">
-          <h1 className="text-2xl text-gray-200">
-            Vite + React + Typescript + Electron + Tailwind
-            {window.Main.clipboard()}
-          </h1>
+          <h1 className="text-2xl text-gray-200">Vite + React + Typescript + Electron + Tailwind</h1>
           <button
             className="bg-yellow-400 py-2 px-4 rounded focus:outline-none shadow hover:bg-yellow-200"
             onClick={handleToggle}

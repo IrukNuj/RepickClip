@@ -1,4 +1,9 @@
-# Vite + React + Typescript + Electron - Starter
+# -
+
+- https://zenn.dev/todesking/articles/90d05f92d49461
+- https://zenn.dev/thirosue/books/49a4ee418743ed/viewer/57d161
+
+<!-- # Vite + React + Typescript + Electron - Starter
 
 ![Vite + React + Typescript + Tailwind + Electron Starter](Screenshot.jpg)
 
@@ -12,7 +17,7 @@ By default, the React framework is used for the interface, but you can easily us
 
 ## Installation
 
-Clone this repo and install all dependencies  
+Clone this repo and install all dependencies
 `yarn` or `npm install`
 
 ## Development
@@ -27,11 +32,11 @@ Clone this repo and install all dependencies
 
 `yarn dist` or `npm run dist`
 
-## More advanced templates  
+## More advanced templates
 
-If you are looking for more advanced templates than this, please go to one of the following links (these are some other links out of the **[awesome-vite](https://github.com/vitejs/awesome-vite)** repo) or you can help me make this template better 🙂  
+If you are looking for more advanced templates than this, please go to one of the following links (these are some other links out of the **[awesome-vite](https://github.com/vitejs/awesome-vite)** repo) or you can help me make this template better 🙂
 
-Links: 
+Links:
 - [vite-react-electron](https://github.com/caoxiemeihao/vite-react-electron)
 - [electron-vite-react](https://github.com/twstyled/electron-vite-react)
-- [vite-electron-esbuild-starter](https://github.com/jctaoo/vite-electron-esbuild-starter)
+- [vite-electron-esbuild-starter](https://github.com/jctaoo/vite-electron-esbuild-starter) -->
