@@ -1,6 +1,5 @@
 import { ClipboardData } from '@prisma/client';
 import React, { FC, SetStateAction } from 'react';
-import { clipboard } from 'electron';
 import { dateToFullJstLocale } from '../util';
 
 type Props = {
