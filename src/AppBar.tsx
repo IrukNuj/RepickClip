@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Icon from './assets/icons/Icon-Electron.png';
 
-function AppBar() {
+const AppBar = () => {
   const [isMaximize, setMaximize] = useState(false);
 
   const handleToggle = () => {
@@ -15,7 +15,7 @@ function AppBar() {
   };
 
   return (
-    <>
+    <div className="flex-none">
       <div className="py-0.5 flex justify-between draggable bg-gray-500">
         <div className="inline-flex">
           <img className="h-6 lg:-ml-2" src={Icon} alt="Icon of Electron" />
@@ -42,8 +42,8 @@ function AppBar() {
           <div className="text-sm w-9  hover:bg-gray-700 ">Help</div>
         </div>
       </div> */}
-    </>
+    </div>
   );
-}
+};
 
 export default AppBar;

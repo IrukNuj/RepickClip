@@ -16,7 +16,7 @@ type rendererAPI = {
   on: (channel: string, callback: (data: any) => void) => void;
   clipboard: () => Promise<any>;
   getClipboardData: () => Promise<any>;
-  updateFavorites: (updateData: ClipboardData) => Promise<any>;
+  updateFavorites: (updateData: ClipboardData) => Promise<ClipboardData[]>;
 };
 
 const api: rendererAPI = {

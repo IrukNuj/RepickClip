@@ -40,7 +40,7 @@
         "react/no-children-prop": 0,
         "react/jsx-props-no-spreading": 0,
         "react/function-component-definition": ["warn", {
-            "namedComponents": "function-declaration",
+            "namedComponents": "arrow-function",
             "unnamedComponents": "function-expression"
         }],
         "react/jsx-filename-extension": [
