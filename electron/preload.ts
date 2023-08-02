@@ -1,3 +1,4 @@
+import { ClipboardData } from '@prisma/client';
 import { ipcRenderer, contextBridge } from 'electron';
 
 declare global {
@@ -15,6 +16,7 @@ type rendererAPI = {
   on: (channel: string, callback: (data: any) => void) => void;
   clipboard: () => Promise<any>;
   getClipboardData: () => Promise<any>;
+  updateFavorites: (updateData: ClipboardData) => Promise<any>;
 };
 
 const api: rendererAPI = {
@@ -44,6 +46,9 @@ const api: rendererAPI = {
   },
   getClipboardData: () => {
     return ipcRenderer.invoke('get-clipboard-data');
+  },
+  updateFavorites: (updateData: ClipboardData) => {
+    return ipcRenderer.invoke('update-favorite', updateData);
   }
 };
 contextBridge.exposeInMainWorld('Main', api);
