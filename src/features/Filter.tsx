@@ -1,22 +1,23 @@
 import { ClipboardData } from '@prisma/client';
-import React, { useEffect, useState } from 'react';
+import React, { FC, SetStateAction, useEffect, useState } from 'react';
 
-function Filter(
-  clipboardData: ClipboardData[],
-  setFilteredData: React.Dispatch<React.SetStateAction<ClipboardData[]>>
-) {
-  const [filter, setFilter] = useState<string>('');
+type Props = {
+  clipboardData: ClipboardData[];
+  setFilteredData: React.Dispatch<SetStateAction<ClipboardData[]>>;
+};
+
+const FilterComponent: FC<Props> = ({ clipboardData, setFilteredData }) => {
+  const [filter, setFilter] = useState<string>();
   const [isFilterByFavorite, setIsFilterByFavorite] = useState<boolean>(false);
 
   useEffect(() => {
-    setFilteredData(
-      clipboardData.filter((e) => {
-        const favoriteFilter = isFilterByFavorite ? e.favorite : true;
-        const contentFilter = filter ? e.content.toLowerCase().includes(filter.toLowerCase()) : true;
-        const locationFilter = filter ? e.location.toLowerCase().includes(filter.toLowerCase()) : true;
-        return (contentFilter || locationFilter) && favoriteFilter;
-      })
-    );
+    const filteredData = clipboardData.filter((e) => {
+      const favoriteFilter = isFilterByFavorite ? e.favorite : true;
+      const contentFilter = filter ? e.content.toLowerCase().includes(filter.toLowerCase()) : true;
+      const locationFilter = filter ? e.location.toLowerCase().includes(filter.toLowerCase()) : true;
+      return (contentFilter || locationFilter) && favoriteFilter;
+    });
+    setFilteredData(filteredData);
   }, [filter, isFilterByFavorite]);
 
   return (
@@ -56,6 +57,6 @@ function Filter(
       </label>
     </div>
   );
-}
+};
 
-export default Filter;
+export default FilterComponent;
