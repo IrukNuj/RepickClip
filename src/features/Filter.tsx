@@ -1,5 +1,6 @@
 import { ClipboardData } from '@prisma/client';
 import React, { FC, SetStateAction, useEffect, useState } from 'react';
+import ToggleFavoriteFilterButton from './ToggleFavoriteFilterButton';
 
 type Props = {
   clipboardData: ClipboardData[];
@@ -11,14 +12,16 @@ const FilterComponent: FC<Props> = ({ clipboardData, setFilteredData }) => {
   const [isFilterByFavorite, setIsFilterByFavorite] = useState<boolean>(false);
 
   useEffect(() => {
-    const filteredData = clipboardData.filter((e) => {
-      const favoriteFilter = isFilterByFavorite ? e.favorite : true;
-      const contentFilter = filter ? e.content.toLowerCase().includes(filter.toLowerCase()) : true;
-      const locationFilter = filter ? e.location.toLowerCase().includes(filter.toLowerCase()) : true;
-      return (contentFilter || locationFilter) && favoriteFilter;
-    });
-    setFilteredData(filteredData);
-  }, [filter, isFilterByFavorite]);
+    if (clipboardData) {
+      const filteredData = clipboardData.filter((e) => {
+        const favoriteFilter = isFilterByFavorite ? e.favorite : true;
+        const contentFilter = filter ? e.content.toLowerCase().includes(filter.toLowerCase()) : true;
+        const locationFilter = filter ? e.location.toLowerCase().includes(filter.toLowerCase()) : true;
+        return (contentFilter || locationFilter) && favoriteFilter;
+      });
+      setFilteredData(filteredData);
+    }
+  }, [filter, isFilterByFavorite, clipboardData]);
 
   return (
     <div className="flex">
@@ -31,30 +34,10 @@ const FilterComponent: FC<Props> = ({ clipboardData, setFilteredData }) => {
           setFilter(e.target.value);
         }}
       />
-      <label
-        htmlFor="favoriteToggle"
-        className="autoSaverSwitch relative inline-flex cursor-pointer select-none items-center"
-      >
-        <input
-          id="favoriteToggle"
-          type="checkbox"
-          name="autoSaver"
-          className="sr-only"
-          checked={isFilterByFavorite}
-          onChange={() => setIsFilterByFavorite(!isFilterByFavorite)}
-        />
-        <span
-          className={`slider mr-3 border  flex h-[26px] w-[50px] items-center rounded-full p-1 duration-200 ${
-            isFilterByFavorite ? 'bg-teal-700' : 'bg-primary '
-          }`}
-        >
-          <span
-            className={`dot h-[18px] w-[18px] rounded-full bg-white duration-200 ${
-              isFilterByFavorite ? 'translate-x-6' : ''
-            }`}
-          />
-        </span>{' '}
-      </label>
+      <ToggleFavoriteFilterButton
+        isFilterByFavorite={isFilterByFavorite}
+        setIsFilterByFavorite={setIsFilterByFavorite}
+      />
     </div>
   );
 };

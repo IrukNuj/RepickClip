@@ -1,13 +1,15 @@
 import { ClipboardData } from '@prisma/client';
 import React, { FC, SetStateAction } from 'react';
+import { clipboard } from 'electron';
 import { dateToFullJstLocale } from '../util';
 
 type Props = {
   filteredData: ClipboardData[];
+  clipboardData: ClipboardData[];
   setClipboardData: React.Dispatch<SetStateAction<ClipboardData[]>>;
 };
 
-const ClipboardDataTable: FC<Props> = ({ filteredData, setClipboardData }) => {
+const ClipboardDataTable: FC<Props> = ({ filteredData, clipboardData, setClipboardData }) => {
   return (
     <div className="py-4  overflow-y-auto max-h-[85vh] max-x-[90vw]">
       <table className="w-full text-left text-gray-500 dark:text-gray-400 rounded">
@@ -48,9 +50,11 @@ const ClipboardDataTable: FC<Props> = ({ filteredData, setClipboardData }) => {
               <td className="px-6 py-2">
                 <button
                   onClick={async () => {
-                    const updateData = { ...data, favorite: !data.favorite };
-                    const updatedData = await window.Main.updateFavorites(updateData);
-                    setClipboardData(updatedData);
+                    const switchedFavoriteData: ClipboardData = { ...data, favorite: !data.favorite };
+                    const updateData = clipboardData.map((e) => (e.id === data.id ? switchedFavoriteData : e));
+                    setClipboardData(updateData);
+
+                    await window.Main.updateFavorites(switchedFavoriteData);
                   }}
                 >
                   {data.favorite ? (

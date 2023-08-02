@@ -26,7 +26,8 @@ const App = () => {
           <h1 className="text-2xl font-bold mb-4 text-gray-200">Clipboard Data:(このへんにSearch Form)</h1>
           <FilterComponent clipboardData={clipboardData} setFilteredData={setFilteredData} />
           <ClipboardDataTable
-            filteredData={filteredData.length ? filteredData : clipboardData}
+            filteredData={filteredData}
+            clipboardData={clipboardData}
             setClipboardData={setClipboardData}
           />
         </div>
