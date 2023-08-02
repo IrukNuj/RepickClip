@@ -22,6 +22,8 @@ function createWindow() {
   const window = new BrowserWindow({
     width,
     height,
+    // transparent: true,
+    opacity: 0.1,
     roundedCorners: true,
     frame: false,
     show: true,
