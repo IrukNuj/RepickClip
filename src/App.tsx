@@ -2,29 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { ClipboardData } from '@prisma/client';
 import AppBar from './AppBar';
 import { dateToFullJstLocale } from './util';
+import Filter from './features/Filter';
 
 function App() {
   const [clipboardData, setClipboardData] = useState<ClipboardData[]>([]);
   const [filteredData, setFilteredData] = useState<ClipboardData[]>([]);
-  const [filter, setFilter] = useState<string>('');
-  const [isFilterByFavorite, setIsFilterByFavorite] = useState<boolean>(false);
 
   useEffect(() => {
     window.Main.getClipboardData().then((data) => {
       setClipboardData(data);
     });
   }, []);
-
-  useEffect(() => {
-    setFilteredData(
-      clipboardData.filter((e) => {
-        const favoriteFilter = isFilterByFavorite ? e.favorite : true;
-        const contentFilter = filter ? e.content.toLowerCase().includes(filter.toLowerCase()) : true;
-        const locationFilter = filter ? e.location.toLowerCase().includes(filter.toLowerCase()) : true;
-        return (contentFilter || locationFilter) && favoriteFilter;
-      })
-    );
-  }, [filter, isFilterByFavorite]);
 
   return (
     <>
@@ -36,41 +24,7 @@ function App() {
       <div className="flex  p-6 bg-slate-900 relative h-screen">
         <div className="flex-auto w-5/6">
           <h1 className="text-2xl font-bold mb-4 text-gray-200">Clipboard Data:(このへんにSearch Form)</h1>
-          <div className="flex">
-            <input
-              className="border bg-gray-300 bg-transparent  text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              type="text"
-              placeholder="けんさくまど"
-              value={filter}
-              onChange={(e) => {
-                setFilter(e.target.value);
-              }}
-            />
-            <label
-              htmlFor="favoriteToggle"
-              className="autoSaverSwitch relative inline-flex cursor-pointer select-none items-center"
-            >
-              <input
-                id="favoriteToggle"
-                type="checkbox"
-                name="autoSaver"
-                className="sr-only"
-                checked={isFilterByFavorite}
-                onChange={() => setIsFilterByFavorite(!isFilterByFavorite)}
-              />
-              <span
-                className={`slider mr-3 border  flex h-[26px] w-[50px] items-center rounded-full p-1 duration-200 ${
-                  isFilterByFavorite ? 'bg-teal-700' : 'bg-primary '
-                }`}
-              >
-                <span
-                  className={`dot h-[18px] w-[18px] rounded-full bg-white duration-200 ${
-                    isFilterByFavorite ? 'translate-x-6' : ''
-                  }`}
-                />
-              </span>{' '}
-            </label>
-          </div>
+          <Filter clipboardData={clipboardData} setFilteredData={setFilteredData} />
           <div className="py-4  overflow-y-auto max-h-[85vh] max-x-[90vw]">
             <table className="w-full text-left text-gray-500 dark:text-gray-400 rounded">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
