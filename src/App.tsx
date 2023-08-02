@@ -15,7 +15,14 @@ function App() {
   }, []);
 
   useEffect(() => {
-    setFilteredData(clipboardData.filter((e) => e.content.includes(filter)));
+    setFilteredData(
+      clipboardData.filter((e) => {
+        return (
+          e.content.toLowerCase().includes(filter.toLowerCase()) ||
+          e.location.toLowerCase().includes(filter.toLowerCase())
+        );
+      })
+    );
   }, [filter]);
 
   return (
@@ -48,7 +55,10 @@ function App() {
                     Content
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    favorited
+                    favorite
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    location
                   </th>
                   <th scope="col" className="px-6 py-3">
                     count
@@ -112,6 +122,7 @@ function App() {
                         )}
                       </button>
                     </td>
+                    <td className="px-6 py-2">{data.location}</td>
                     <td className="px-6 py-2">{data.count}</td>
                     <td className="px-6 py-2">{dateToFullJstLocale(data.timestamp)}</td>
                   </tr>

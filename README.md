@@ -29,6 +29,14 @@
 - [ ] `electron-trpc`の導入
   - [#12](https://github.com/IrukNuj/RepickClip/issues/12)
 - [ ] copiedTab の 記憶(chrome とか discord)
+  - [#13](https://github.com/IrukNuj/RepickClip/issues/13)
+- [ ]`window.close()`したときに main から通知を出す
+  - https://www.electronjs.org/ja/docs/latest/api/notification
+- [ ]検索方法保存したいな
+- [ ]重複保存辞めたい
+
+---
+
 <!-- # Vite + React + Typescript + Electron - Starter
 
 ![Vite + React + Typescript + Tailwind + Electron Starter](Screenshot.jpg)
