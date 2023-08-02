@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { ClipboardData } from '@prisma/client';
 import AppBar from './AppBar';
-import FilterComponent from './features/Filter';
-import ClipboardDataTable from './features/ClipboardDataTable';
+import FilterComponent from './features/Filter/Filter';
+import ClipboardDataTable from './features/ClipboardDataTable/ClipboardDataTable';
 
 const App = () => {
   const [clipboardData, setClipboardData] = useState<ClipboardData[]>([]);
@@ -16,11 +16,7 @@ const App = () => {
 
   return (
     <>
-      {window.Main && (
-        <div className="flex-none">
-          <AppBar />
-        </div>
-      )}
+      {window.Main && <AppBar />}
       <div className="flex  p-6 bg-slate-900 relative h-screen">
         <div className="flex-auto w-5/6">
           <h1 className="text-2xl font-bold mb-4 text-gray-200">Clipboard Data:(このへんにSearch Form)</h1>

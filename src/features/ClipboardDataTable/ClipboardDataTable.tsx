@@ -1,6 +1,6 @@
 import { ClipboardData } from '@prisma/client';
 import React, { FC, SetStateAction } from 'react';
-import { dateToFullJstLocale } from '../util';
+import { dateToFullJstLocale } from '../../util';
 
 type Props = {
   filteredData: ClipboardData[];
