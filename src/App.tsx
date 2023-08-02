@@ -111,11 +111,14 @@ function App() {
                       <button
                         onClick={async () => {
                           const updateData = { ...data, favorite: !data.favorite };
-                          const updatedData = await window.Main.updateFavorites(updateData);
+                          // eslint-disable-next-line no-param-reassign
+                          data.favorite = updateData.favorite;
+
+                          await window.Main.updateFavorites(updateData);
 
                           setClipboardData(
                             clipboardData.map((d) => {
-                              return d.id === data.id ? updatedData : d;
+                              return d.id === data.id ? updateData : d;
                             })
                           );
                         }}
