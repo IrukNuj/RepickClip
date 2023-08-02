@@ -4,7 +4,7 @@ import { join } from 'path';
 // Packages
 import { BrowserWindow, app, ipcMain, clipboard, nativeTheme, desktopCapturer } from 'electron';
 import isDev from 'electron-is-dev';
-import { PrismaClient } from '@prisma/client';
+import { ClipboardData, PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -120,5 +120,23 @@ ipcMain.handle('get-clipboard-data', async () => {
   } catch (error) {
     console.error('Error retrieving data from database:', error);
     return [];
+  }
+});
+
+ipcMain.handle('update-favorite', async (_e, updateData: ClipboardData) => {
+  try {
+    const updatedData = await prisma.clipboardData.update({
+      where: {
+        id: updateData.id
+      },
+      data: {
+        favorite: updateData.favorite
+      }
+    });
+
+    return updatedData;
+  } catch (error) {
+    console.error('Error retrieving data from database:', error);
+    return null;
   }
 });
