@@ -11,6 +11,7 @@ model ClipboardData {
   id        Int      @id @default(autoincrement())
   content   String
   favorite  Boolean
+  location  String
   count     Int
   timestamp DateTime
 }

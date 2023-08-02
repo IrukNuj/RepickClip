@@ -2,7 +2,7 @@
 import { join } from 'path';
 
 // Packages
-import { BrowserWindow, app, ipcMain, clipboard, nativeTheme } from 'electron';
+import { BrowserWindow, app, ipcMain, clipboard, nativeTheme, desktopCapturer } from 'electron';
 import isDev from 'electron-is-dev';
 import { PrismaClient } from '@prisma/client';
 
@@ -73,12 +73,13 @@ app.whenReady().then(() => {
   });
 });
 
-function saveClipboardData(clipboardData: string) {
+function saveClipboardData(clipboardData: string, activateWindowTitle: string) {
   prisma.clipboardData
     .create({
       data: {
         content: clipboardData,
         favorite: false,
+        location: activateWindowTitle,
         count: 0,
         timestamp: new Date()
       }
@@ -91,10 +92,13 @@ function saveClipboardData(clipboardData: string) {
 app.on('ready', () => {
   const clipboardData = initialClipboardData;
   // 毎秒ごとにクリップボードの内容を監視
-  setInterval(() => {
+  setInterval(async () => {
     clipboardData.current = clipboard.readText();
     if (clipboardData.current !== clipboardData.before) {
-      saveClipboardData(clipboardData.current);
+      const activateWindow = await desktopCapturer.getSources({ types: ['window'] }).then((r) => r);
+      // const focusedWindow = activateWindow.filter((e) => e.id.substring(-1) === '1');
+      const focusedWindowName = activateWindow.length ? activateWindow[0].name : '';
+      saveClipboardData(clipboardData.current, focusedWindowName);
     }
     clipboardData.before = clipboardData.current;
   }, 1000);
