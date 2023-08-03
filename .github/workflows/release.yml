@@ -1,0 +1,46 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    strategy:
+      matrix:
+        # クロスプラットフォーム・ビルド
+        # platform: [macos-latest, ubuntu-latest, windows-latest]
+        platform: [windows-latest]
+
+    runs-on: ${{ matrix.platform }}
+    steps:
+      # Actions の基本設定
+      - name: Check out Git repository
+        uses: actions/checkout@master
+
+      # Node.js のセットアップ
+      - name: Setup Node.js
+        uses: actions/setup-node@master
+        with:
+          node-version: 17
+
+      # 依存パッケージのインストール
+      - name: Install dependencies
+        run: yarn
+
+      #### webpackなどによるビルドが必要なとき ####
+      # - name: Build
+      #   run: yarn build
+
+      # GitHub releases へデプロイ
+      - name: Build/release Electron app
+        uses: samuelmeuli/action-electron-builder@v1
+        with:
+          # GitHub token, automatically provided to the action
+          # (No need to define this secret in the repo settings)
+          github_token: ${{ secrets.github_token }}
+
+          # If the commit is tagged with a version (e.g. "v1.0.0"),
+          # release the app after building
+          release: ${{ startsWith(github.ref, 'refs/tags/v') }}
