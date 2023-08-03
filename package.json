@@ -78,6 +78,13 @@
     "publishell": {
       "provider": "github",
       "releaseType": "draft"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ],
+      "publisherName": "sprout2000"
     }
   }
 }
