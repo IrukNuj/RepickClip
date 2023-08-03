@@ -19,7 +19,7 @@ jobs:
           node-version: 17 # 必要に応じてNode.jsのバージョンを調整してください。
 
       - name: 依存関係のインストール
-        run: npm install --frozen-lockfile
+        run: yarn --frozen-lockfile
 
       - name: Yarn Lintの実行
-        run: npm run lint
+        run: yarn lint
