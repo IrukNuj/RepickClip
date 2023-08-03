@@ -16,7 +16,7 @@ jobs:
       - name: Node.jsのセットアップ
         uses: actions/setup-node@v2
         with:
-          node-version: 17 # 必要に応じてNode.jsのバージョンを調整してください。
+          node-version: 18 # 必要に応じてNode.jsのバージョンを調整してください。
 
       - name: 依存関係のインストール
         run: yarn --frozen-lockfile
