@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-    permissions: write-all
     strategy:
       matrix:
         # クロスプラットフォーム・ビルド
@@ -39,6 +38,7 @@ jobs:
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
         with:
+          permissions: write-all
           # GitHub token, automatically provided to the action
           # (No need to define this secret in the repo settings)
           github_token: ${{ secrets.github_token }}
