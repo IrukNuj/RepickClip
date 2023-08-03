@@ -30,7 +30,8 @@
     "type-check": "tsc",
     "lint": "eslint . --ext js,jsx,ts,tsx",
     "lint:fix": "eslint . --ext js,jsx,ts,tsx --fix",
-    "prisma": "prisma migrate dev && prisma generate"
+    "prisma": "prisma migrate dev && prisma generate",
+    "release": "node ./build.js"
   },
   "dependencies": {
     "@prisma/client": "^5.0.0",
