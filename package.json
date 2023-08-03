@@ -75,7 +75,7 @@
     "directories": {
       "buildResources": "resources"
     },
-    "publishell": {
+    "publish": {
       "provider": "github",
       "releaseType": "draft"
     },
@@ -85,6 +85,9 @@
         "zip"
       ],
       "publisherName": "sprout2000"
+    },
+    "nsis": {
+      "artifactName": "${productName}-${version}-win32-installer.exe"
     }
   }
 }
