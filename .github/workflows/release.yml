@@ -23,7 +23,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@master
         with:
-          node-version: 18
+          node-version: 17
 
       # 依存パッケージのインストール
       - name: Install dependencies
