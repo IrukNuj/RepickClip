@@ -1,5 +1,5 @@
-import { ClipboardData } from '@prisma/client';
 import { ipcRenderer, contextBridge } from 'electron';
+import { ClipboardData } from '@prisma/client';
 
 declare global {
   interface Window {
