@@ -8,8 +8,7 @@ on:
 
 jobs:
   build:
-    permissions:
-      deployments: write
+    permissions: write-all
     strategy:
       matrix:
         # クロスプラットフォーム・ビルド
