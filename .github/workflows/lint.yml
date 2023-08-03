@@ -14,10 +14,10 @@ jobs:
       - name: Node.jsのセットアップ
         uses: actions/setup-node@v2
         with:
-          node-version: 14  # 必要に応じてNode.jsのバージョンを調整してください。
+          node-version: 17.0.22 # 必要に応じてNode.jsのバージョンを調整してください。
 
       - name: 依存関係のインストール
-        run: yarn install --frozen-lockfile
+        run: npm install --frozen-lockfile
 
       - name: Yarn Lintの実行
-        run: yarn lint
+        run: npm run lint
