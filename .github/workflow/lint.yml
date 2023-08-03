@@ -2,8 +2,6 @@ name: Lint
 
 on:
   push:
-    branches:
-      - main  # メインブランチの名前が異なる場合は、ここを適切な名前に変更してください。
 
 jobs:
   lint:
