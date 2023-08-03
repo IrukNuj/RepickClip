@@ -14,7 +14,7 @@
     "typescript"
   ],
   "repository": {
-    "url": "https://github.com/lTimeless/vite-reactts-electron-starter"
+    "url": "https://github.com/IrukNuj/RepickClip"
   },
   "productName": "vite-reactts-electron-starter",
   "scripts": {
