@@ -39,4 +39,4 @@ jobs:
           # GITHUB_TOKEN は自動生成されるのでとくに設定は不要
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         # NPM スクリプト名は 'release' にすることが必須
-        run: yarn release
+        run: electron-builder

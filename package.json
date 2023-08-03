@@ -67,12 +67,17 @@
   },
   "build": {
     "asar": true,
+    "artifactName": "${productName}-${version}-${platform}-${arch}.${ext}",
     "files": [
       "main",
       "src/out"
     ],
     "directories": {
       "buildResources": "resources"
+    },
+    "publishell": {
+      "provider": "github",
+      "releaseType": "draft"
     }
   }
 }
