@@ -1,6 +1,6 @@
 {
-  "name": "vite-reactts-electron-starter",
-  "version": "0.5.0",
+  "name": "RepickClip",
+  "version": "0.0.4",
   "license": "MIT",
   "main": "main/index.js",
   "author": {
