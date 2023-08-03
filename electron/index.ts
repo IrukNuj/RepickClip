@@ -23,7 +23,7 @@ function createWindow() {
     width,
     height,
     // transparent: true,
-    opacity: 0.1,
+    opacity: 0.95,
     roundedCorners: true,
     frame: false,
     show: true,

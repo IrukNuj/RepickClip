@@ -1,5 +1,7 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  // https://zenn.dev/todesking/articles/90d05f92d49461
+  binaryTargets = ["native", "darwin", "darwin-arm64"]
 }
 
 datasource db {
