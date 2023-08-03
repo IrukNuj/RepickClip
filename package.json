@@ -97,6 +97,10 @@
     },
     "nsis": {
       "artifactName": "${productName}-${version}-win32-installer.exe"
-    }
+    },
+    "extraResources": [
+      "./node_modules/.prisma/**",
+      "./node_modules/@prisma/**"
+    ]
   }
 }
