@@ -1,6 +1,6 @@
 {
   "name": "RepickClip",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "license": "MIT",
   "main": "main/index.js",
   "author": {
@@ -99,6 +99,7 @@
       "artifactName": "${productName}-${version}-win32-installer.exe"
     },
     "extraResources": [
+      "prisma/**/*",
       "./node_modules/.prisma/**",
       "./node_modules/@prisma/**"
     ]
