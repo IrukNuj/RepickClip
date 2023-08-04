@@ -1,12 +1,21 @@
 // Native
-import { join } from 'path';
+import path, { join } from 'path';
 
 // Packages
 import { BrowserWindow, app, ipcMain, clipboard, nativeTheme, desktopCapturer } from 'electron';
 import isDev from 'electron-is-dev';
 import { ClipboardData, PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
+const dbUrl = isDev ? 'file:./db.sqlite' : `file:${path.join(app.getPath('userData'), 'app.sqlite')}`;
+
+const prisma = new PrismaClient({
+  datasources: {
+    db: {
+      url: dbUrl
+    }
+  },
+  log: ['query', 'info']
+});
 
 const height = 1800;
 const width = 2400;
